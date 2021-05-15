@@ -195,7 +195,7 @@ function main()
 			{ x = "590.89642", y = "1231.99341", z = "0" },
 			{ x = "1568.76001", y = "16.44603", z = "0" },
 			{ x = "206.68097", y = "-5.40676", z = "0" },
-			{ x = "2319.78027", y = "1.69281", z = "0" },
+			{ x = "2319.78027", y = "1.69281", z = "0" }
 		}
 		-- Converting it to a huge array would allow to take care of it with only 1 loop
 		-- but it would also became a little bit less readable. Something to consider in the future.
