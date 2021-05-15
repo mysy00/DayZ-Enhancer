@@ -214,7 +214,7 @@ function main()
 		end
 
 		for militarycrate in pairs(militarycrates) do
-			if not doesBlipExist(militarycratesMarker[smilitarycrateafe]) then
+			if not doesBlipExist(militarycratesMarker[militarycrate]) then
 				militarycratesMarker[militarycrate] = addShortRangeSpriteBlipForCoord(militarycrates[militarycrate].x, militarycrates[militarycrate].y, militarycrates[militarycrate].z, 6)
 			end
 		end
@@ -237,11 +237,10 @@ function main()
 			end
 		end
 
-		-- bugged???
-		-- for bin in pairs(bins) do
-		-- 	if not doesBlipExist(binsMarker[bin]) then
-		-- 		binsMarker[bin] = addShortRangeSpriteBlipForCoord(bins[bin].x, bins[bin].y, bins[bin].z, 37)
-		-- 	end
-		-- end
+		for bin in pairs(bins) do
+			if not doesBlipExist(binsMarker[bin]) then
+				binsMarker[bin] = addShortRangeSpriteBlipForCoord(bins[bin].x, bins[bin].y, bins[bin].z, 37)
+			end
+		end
 	end
 end
