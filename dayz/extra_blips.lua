@@ -237,10 +237,11 @@ function main()
 			end
 		end
 
-		for bin in pairs(bins) do
-			if not doesBlipExist(binsMarker[bin]) then
-				binsMarker[bin] = addShortRangeSpriteBlipForCoord(bins[bin].x, bins[bin].y, bins[bin].z, 37)
-			end
-		end
+		-- bugged???
+		-- for bin in pairs(bins) do
+		-- 	if not doesBlipExist(binsMarker[bin]) then
+		-- 		binsMarker[bin] = addShortRangeSpriteBlipForCoord(bins[bin].x, bins[bin].y, bins[bin].z, 37)
+		-- 	end
+		-- end
 	end
 end
