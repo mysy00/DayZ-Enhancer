@@ -32,6 +32,8 @@ git clone https://github.com/mysy00/DayZ-Enhancer.git
   - If you want to equip a helmet, it will be placed automatically. It may require a slight change for your skin. If you don't know how to do it, create an issue or just let me know.
   - Custom position for m4 and sniper (aka walkie-talkie)
   - Your backpack is invisible (it may be annoying if you aren't VIP)
+- dayz/dmg_informer.lua
+  - Whenever your ped deals any damage and server is aware of it, you will see a message on the chat giving you some info about it (who gave you damage, what weapon was it and when (timestamp)). It's useful to catch aimbotters.
 - dayz/weather.lua
   - By default on connect your weather is set to id 3 and time to 12:00.
   - Set custom weather by /sw
