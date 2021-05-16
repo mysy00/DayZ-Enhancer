@@ -225,11 +225,11 @@ function main()
 			end
 		end
 
-		for hospital in pairs(hospitals) do
-			if not doesBlipExist(hospitalsMarker[hospital]) then
-				hospitalsMarker[hospital] = addShortRangeSpriteBlipForCoord(hospitals[hospital].x, hospitals[hospital].y, hospitals[hospital].z, 22)
-			end
-		end
+		-- for hospital in pairs(hospitals) do
+		-- 	if not doesBlipExist(hospitalsMarker[hospital]) then
+		-- 		hospitalsMarker[hospital] = addShortRangeSpriteBlipForCoord(hospitals[hospital].x, hospitals[hospital].y, hospitals[hospital].z, 22)
+		-- 	end
+		-- end
 
 		for campfire in pairs(campfires) do
 			if not doesBlipExist(campfiresMarker[campfire]) then
