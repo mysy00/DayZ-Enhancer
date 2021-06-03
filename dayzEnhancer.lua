@@ -24,6 +24,7 @@ function loadScripts()
   import "dayz/hide_junk.lua"
   import "dayz/slots_used.lua"
   import "dayz/weather.lua"
+  import "dayz/bike_macro.lua"
 end
 
 function main()
