@@ -48,7 +48,7 @@ function sampev.onEditAttachedObject(index)
 	end
 
 	-- it would work but needs a server-side change
-	-- it's probably not gonna happen unless gamemode becomes open source
+	-- it's probably not gonna happen unless the gamemode becomes open source
 	-- Military Vest
 	-- if index == 8 then
 	-- 	sampSendEditAttachedObject(1, index, 19515, 17, 0, 0, 0, 0, 0, 0, 1, 1, 1)

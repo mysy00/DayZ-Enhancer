@@ -1,3 +1,18 @@
+-- Copyright (C) 2021  Mysy00
+
+-- This program is free software: you can redistribute it and/or modify
+-- it under the terms of the GNU General Public License as published by
+-- the Free Software Foundation, either version 3 of the License, or
+-- (at your option) any later version.
+
+-- This program is distributed in the hope that it will be useful,
+-- but WITHOUT ANY WARRANTY; without even the implied warranty of
+-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-- GNU General Public License for more details.
+
+-- You should have received a copy of the GNU General Public License
+-- along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
 script_name('Info about the last damager')
 
 local sampev = require 'samp.events'
@@ -66,5 +81,6 @@ function sampev.onSendTakeDamage(playerID, damage, weaponID, bodypart)
     nickname = "Server"
   end
 
+	-- Server has a limit of symbols. If player's nickname is too long, the message will be shorten by the server.
   sampAddChatMessage("{FFFFFF}Weapon:{FF0000} " .. weapons[weaponID] .. "({FF6666}" .. weaponID .. "{FF0000})" .. "{FFFFFF}, Player:{FF0000} " .. nickname .. "{FFFFFF}, Damage:{FF0000} " .. damage)
 end
