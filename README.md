@@ -58,8 +58,8 @@ git clone https://github.com/mysy00/DayZ-Enhancer.git
     - Info about equipping helmet/military vest
     - "Showing gang member locations has been enabled"
     - "Press N to pick up item, press Y to open your inventory" when joining the server
-  - dayz/bike_macro.lua
-    - Hold left shift to ride your bike quickly. Useful if your roommates are asleep and you want to play samp. It doesn't give you any advantages in terms of speed.
+- dayz/bike_macro.lua
+  - Hold left shift to ride your bike quickly. Useful if your roommates are asleep and you want to play samp. It doesn't give you any advantages in terms of speed.
 
 ## Contributing
 
