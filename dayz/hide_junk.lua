@@ -27,7 +27,7 @@ local chatFilters = {
   "^{FF00FE}%[DOUBLE XP%]",
   "^{b13a3a}%[ACHIEVEMENT%]",
   "^{e600e6}%[WEEKEND BONUS%]",
-  "^{12afed}%[GANG ADVERTISEMENT%]",
+  "^{12afed}%[GANG AD%]",
   "^{00FF00}Helmet has been equipped, headshot damage is now reduced by 50 percent.",
   "^{00FF00}Military Vest has been equipped, body damage is now reduced by 50 percent.",
   "^{00FF00}You can replace your Military Vest using /editvest",
