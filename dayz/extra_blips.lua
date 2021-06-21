@@ -207,23 +207,23 @@ function main()
 			end
 		end
 
-		for safe in pairs(safes) do
-			if not doesBlipExist(safeMarker[safe]) then
-				safeMarker[safe] = addShortRangeSpriteBlipForCoord(safes[safe].x, safes[safe].y, safes[safe].z, 52)
-			end
-		end
+		-- for safe in pairs(safes) do
+		-- 	if not doesBlipExist(safeMarker[safe]) then
+		-- 		safeMarker[safe] = addShortRangeSpriteBlipForCoord(safes[safe].x, safes[safe].y, safes[safe].z, 52)
+		-- 	end
+		-- end
 
-		for militarycrate in pairs(militarycrates) do
-			if not doesBlipExist(militarycratesMarker[militarycrate]) then
-				militarycratesMarker[militarycrate] = addShortRangeSpriteBlipForCoord(militarycrates[militarycrate].x, militarycrates[militarycrate].y, militarycrates[militarycrate].z, 6)
-			end
-		end
+		-- for militarycrate in pairs(militarycrates) do
+		-- 	if not doesBlipExist(militarycratesMarker[militarycrate]) then
+		-- 		militarycratesMarker[militarycrate] = addShortRangeSpriteBlipForCoord(militarycrates[militarycrate].x, militarycrates[militarycrate].y, militarycrates[militarycrate].z, 6)
+		-- 	end
+		-- end
 
-		for coffin in pairs(coffins) do
-			if not doesBlipExist(coffinsMarker[coffin]) then
-				coffinsMarker[coffin] = addShortRangeSpriteBlipForCoord(coffins[coffin].x, coffins[coffin].y, coffins[coffin].z, 23)
-			end
-		end
+		-- for coffin in pairs(coffins) do
+		-- 	if not doesBlipExist(coffinsMarker[coffin]) then
+		-- 		coffinsMarker[coffin] = addShortRangeSpriteBlipForCoord(coffins[coffin].x, coffins[coffin].y, coffins[coffin].z, 23)
+		-- 	end
+		-- end
 
 		-- for hospital in pairs(hospitals) do
 		-- 	if not doesBlipExist(hospitalsMarker[hospital]) then
@@ -231,16 +231,16 @@ function main()
 		-- 	end
 		-- end
 
-		for campfire in pairs(campfires) do
-			if not doesBlipExist(campfiresMarker[campfire]) then
-				campfiresMarker[campfire] = addShortRangeSpriteBlipForCoord(campfires[campfire].x, campfires[campfire].y, campfires[campfire].z, 56)
-			end
-		end
+		-- for campfire in pairs(campfires) do
+		-- 	if not doesBlipExist(campfiresMarker[campfire]) then
+		-- 		campfiresMarker[campfire] = addShortRangeSpriteBlipForCoord(campfires[campfire].x, campfires[campfire].y, campfires[campfire].z, 56)
+		-- 	end
+		-- end
 
-		for bin in pairs(bins) do
-			if not doesBlipExist(binsMarker[bin]) then
-				binsMarker[bin] = addShortRangeSpriteBlipForCoord(bins[bin].x, bins[bin].y, bins[bin].z, 37)
-			end
-		end
+		-- for bin in pairs(bins) do
+		-- 	if not doesBlipExist(binsMarker[bin]) then
+		-- 		binsMarker[bin] = addShortRangeSpriteBlipForCoord(bins[bin].x, bins[bin].y, bins[bin].z, 37)
+		-- 	end
+		-- end
 	end
 end
