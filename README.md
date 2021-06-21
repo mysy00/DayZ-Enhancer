@@ -28,6 +28,10 @@ git clone https://github.com/mysy00/DayZ-Enhancer.git
 
 - DayzEnhancer.lua
   - Used to load modules (files in dayz folder). If you want to disable a module, you can either remove the whole line with `import` or add `--` in front of it.
+- dayz/simple_td.lua
+  - Replaces the original textdraws (aka HUD) with simpler ones. Toggle them by pressing by `\`. If you start spectacting a player, the default textdraws will appear automatically. Things like temperature and energy are visible only if they're low. To give you a hint, things that are considered to be too low change color to red to indicate you should do something.
+- dayz/simple_td_coins.lua
+  - Coins submodule for the module above. It shows how much coins you have. It updates every 30 seconds.
 - dayz/attached_objects.lua
   - If you want to equip a helmet, it will be placed automatically. It may require a slight change for your skin. If you don't know how to do it, create an issue or just let me know.
   - Custom position for m4 and sniper (aka walkie-talkie)

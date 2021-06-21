@@ -19,12 +19,14 @@ local ALLOWED_SERVER_IP = "151.80.47.38"
 
 function loadScripts()
   import "dayz/attached_objects.lua"
+  import "dayz/bike_macro.lua"
   import "dayz/dmg_informer.lua"
   import "dayz/extra_blips.lua"
   import "dayz/hide_junk.lua"
+  import "dayz/simple_td.lua"
+  import "dayz/simple_td_coins.lua"
   import "dayz/slots_used.lua"
   import "dayz/weather.lua"
-  import "dayz/bike_macro.lua"
 end
 
 function main()
