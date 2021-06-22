@@ -25,10 +25,12 @@ function main()
 	while true do
 	wait(0)
 		-- Left shift
-		if bike[getCarModel(storeCarCharIsInNoSave(playerPed))] and isCharOnAnyBike(playerPed) and isKeyCheckAvailable() and isKeyDown(0xA0) then
-				setGameKeyState(16, 255)
-				wait(10)
-				setGameKeyState(16, 0)
+		if isCharInAnyCar(PLAYER_PED) then
+			if bike[getCarModel(storeCarCharIsInNoSave(playerPed))] and isCharOnAnyBike(playerPed) and isKeyCheckAvailable() and isKeyDown(0xA0) then
+					setGameKeyState(16, 255)
+					wait(10)
+					setGameKeyState(16, 0)
+			end
 		end
 	end
 end
