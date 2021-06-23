@@ -243,7 +243,7 @@ function sampev.onSendSpawn() -- latest
 end
 
 function kuzepro()
-	if math.random(1,20) == 15 then
+	if math.random(1,100) == 15 then
 		sampSendChat("/r kuze pro")
 	end
 end
