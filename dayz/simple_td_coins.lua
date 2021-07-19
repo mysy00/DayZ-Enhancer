@@ -42,19 +42,17 @@ function main()
 
 		mem.write(0x58F5FC, 0, 1, true) -- hide money
 
-    if not isPlayerSpecing then
-			if runnable then
-				updateCoins()
-				runnable = false
-			end
+		if runnable then
+			updateCoins()
+			runnable = false
 
-      sampTextdrawCreate(952, "COINS: " .. coins, 553.5, 80)
-      sampTextdrawSetStyle(952,2)
-      sampTextdrawSetAlign(952,2)
-      sampTextdrawSetBoxColorAndSize(952, 1, 0x88000000, 0, 121.5)
-      sampTextdrawSetLetterSizeAndColor(952, 0.17000000178814, 1.0, 0xFFFFFFFF)
-      sampTextdrawSetOutlineColor(952, 1, 0x00000000)
-    end
+			sampTextdrawCreate(952, "COINS: " .. coins, 553.5, 80)
+			sampTextdrawSetStyle(952, 2)
+			sampTextdrawSetAlign(952, 2)
+			sampTextdrawSetBoxColorAndSize(952, 1, 0x88000000, 0, 121.5)
+			sampTextdrawSetLetterSizeAndColor(952, 0.17000000178814, 1.0, 0xFFFFFFFF)
+			sampTextdrawSetOutlineColor(952, 1, 0x00000000)
+		end
   end
 end
 
@@ -68,7 +66,7 @@ end
 
 function sampev.onServerMessage(color, msg)
 	-- {00FF00}You currently have 19 coins
-	if msg:match("{00FF00}You currently have ") then
+	if msg:match("{00FF00}You currently have ") or msg:match("{00FF00}Voce tem atualmente ") or msg:match("{00FF00}Actualmente tiene ") then
 		runnable = true
 		coins = msg:gsub('%{(.*)%}', ""):match('%d+')
 		return false
