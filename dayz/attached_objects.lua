@@ -45,6 +45,7 @@ function sampev.onEditAttachedObject(index)
 	-- Helmet
 	if index == 9 then
 		sampSendEditAttachedObject(1, index, 19200, 2, 0.11999989300966, 0, 0, 0, 0, 0, 1, 1, 1)
+		setVirtualKeyDown(27, true)
 	end
 
 	-- it would work but needs a server-side change
