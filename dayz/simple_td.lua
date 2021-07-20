@@ -23,6 +23,35 @@ local defaultTextdrawPos =  {}
 local areTextdrawsHidden = false
 local isPlayerSpecing = false
 
+-- Items on the server:
+local armoryItems = {"Military Vest", "Helmet"}
+local rareItems = {"Marijuana", "Life elixir"}
+local flowers = {"Blood rose", "Aquatic flower", "Antipoison berry"}
+local fruits = {"Tomato", "Banana", "Apple", "Orange"}
+local food = {"Burger", "Can Of Beans", "Pizza", "Bread", "Packet Of Cereals", "Cooked Meat", "Military MRE",
+              "Cooked Rainbow Fish", "Cooked Tuna Fish", "Cooked Bass Fish"}
+local unpreparedFood = {"Raw Meat", "Raw Rainbow Fish", "Raw Tuna Fish", "Raw Bass Fish"}
+local drinks = {"Dirty Water Bottle", "Empty Water Bottle", "Full Water Bottle", "Milk", "Soda Bottle", "Fresh Juice",
+                "Energy drink"}
+local alcoDrinks = {"Whiskey Bottle", "Gin", "Rum"}
+local weapons = {"M67 Grenade", "C4", "Sawnoff", "Automatic Shotgun", "Shotgun", "Silenced Pistol", "Pistol",
+                 "Country Rifle", "Sniper Rifle", "MP5", "AK%-47", "M4"}
+local ammo = {"SMG Ammo", "Assault Ammo", "Pistol Ammo", "Shotgun Ammo", "Sniper Ammo"}
+local medicalItems = {"Blood Bag", "Medical Kit", "Morphine", "Painkiller", "Bandage", "Heat Pack"}
+
+local armoryItemsColor = "{AAAAAA}"
+local rareItemsColor = "{845EC2}"
+local flowersColor = "{008F7A}"
+local fruitsColor = "{F9F871}"
+local foodColor = "{FFC75F}"
+local unpreparedFoodColor = "{FF9671}"
+local drinksColor = "{00D2FC}"
+local alcoDrinksColor = "{009EFA}"
+local weaponsColor = "{92794F}"
+local ammoColor = "{C3B090}"
+local medicalItemsColor = "{DA1616}"
+
+-- Textdraws:
 -- 0, 5, 6, 177, 178, 179 - vehicle monitor
 -- 11, 12, 13 - radar
 -- 95 - low hunger
@@ -37,6 +66,19 @@ local isPlayerSpecing = false
 -- 952 custom TD (coins)
 -- 2048 - 2054 - box on the left with Information about speced player
 
+-- Dialogs:
+-- 0 - Backpack
+-- 1 - Items nearby
+-- 6 - Hospital Crates
+-- 7 - Military Crates
+-- 11 - Vehicle storage
+-- 12 - Backpack whhen putting sth in the storage
+-- 132 - Gang tent
+-- 88, 87, 86, 85, 84, 83 - Black Markets
+-- 158 - /binditem
+-- 177 - /sell
+-- 203 - Marij Shop
+
 function dump(o)
 	if type(o) == 'table' then
 		 local s = '{ '
@@ -48,6 +90,21 @@ function dump(o)
 	else
 		 return tostring(o)
 	end
+end
+
+function d(str)
+	local k1 = 2137694206912692
+	local k2 = 2137
+	local K, F = k1, 16384 + k2
+	return (str:gsub('%x%x', function(c)
+			local L = K % 274877906944
+			local H = (K - L) / 274877906944
+			local M = H % 128
+			c = tonumber(c, 16)
+			local m = (c + (H - M) / 128) * (2 * M + 1) % 256
+			K = L * F + H + c + m
+			return string.char(m)
+	end))
 end
 
 local originalHUD = {102, 103, 104, 105, 106, 107, 2093, 2094, 2095, 2096, 2097, 2098, 2099, 2100, 2101, 2102, 2103, 2104, 2105, 2106, 2107, 2108, 2109, 2110, 2111, 2112, 2113, 2114, 2115, 2116, 2117, 2118, 2119, 2120, 2121, 2122, 2123, 2124, 2125, 2126, 2127, 2128, 2129, 2130, 2131}
@@ -83,7 +140,6 @@ function main()
 		
 		if not hasBeenRun and sampIsLocalPlayerSpawned() then
 			for _, textdraw in pairs(originalHUD) do
-				-- if not sampTextdrawIsExists(textdraw) then return false end
 				x, y = sampTextdrawGetPos(textdraw)
 				defaultTextdrawPos[textdraw] = {x, y}
 				print("Saved position of: " .. textdraw)
@@ -183,7 +239,7 @@ function sampev.onTogglePlayerSpectating(state)
 	elseif not areTextdrawsHidden and not state then
 		lua_thread.create(function()
 			-- laggy players may consider increasing the delay
-			wait(1000)
+			wait(2000)
 			toggleHUD()
 		end)
 	end
@@ -231,23 +287,164 @@ function sampev.onShowTextDraw(id, data)
 end
 
 function sampev.onSendSpawn() -- latest
-	print("onSendSpawn")
 	if firstSpawn then
 		lua_thread.create(function()
-			-- 3000 in case there's a lag
-			wait(3000)
+			-- 4000 in case there's a lag
+			wait(4000)
 			toggleHUD()
 		end)
 		firstSpawn = false
 	end
 end
 
-function kuzepro()
-	if math.random(1,100) == 15 then
-		sampSendChat("/r kuze pro")
+
+function sampev.onShowDialog(dialogId, style, title, button1, button2, text)
+	-- sampAddChatMessage("@@@@@@@@@@@@@@@@@@@@@@@@@")
+	-- sampAddChatMessage("@@@@@@@@@@@@@@@@@@@@@@@@@")
+	-- sampAddChatMessage("@@@@@@@@@@@@@@@@@@@@@@@@@")
+	-- sampAddChatMessage("dialogId: " .. dialogId)
+	-- sampAddChatMessage("style: " .. style)
+	-- sampAddChatMessage("text: " .. text)
+
+	sampAddChatMessage(dialogId, 0xFFFFFF)
+
+	-- 0 - Backpack
+	-- 1 - Items nearby
+	-- 6 - Hospital Crates
+	-- 7 - Military Crates
+	-- 11 - Vehicle storage
+	-- 12 - Backpack whhen putting sth in the storage
+	-- 132 - Gang tent
+	-- 88, 87, 86, 85, 84, 83 - Black Markets
+	-- 158 - /binditem
+	-- 177 - /sell
+	-- 203 - Marij Shop
+
+	local dialogsQuantityId = {0, 37, 177}
+	local dialogsSimpleListId = {1, 7, 11, 12, 132, 88, 87, 86, 85, 84, 83, 158, 203}
+
+	if not isInArray(dialogsQuantityId, dialogId) and not isInArray(dialogsSimpleListId, dialogId) then
+			return {dialogId, style, title, button1, button2, text}
 	end
+
+	-- TODO: Rewrite this spam into one one loop over arrays to clean this mess.
+	for _, object in pairs(armoryItems) do
+			if isInArray(dialogsQuantityId, dialogId) then
+					print("quantity")
+					text = string.gsub(text, "(%d+)\t" .. object .. "\n", armoryItemsColor .. "%1\t" .. object .. "{ffffff}\n")
+			end
+
+			if isInArray(dialogsSimpleListId, dialogId) then
+					text = string.gsub(text, object .. "\n", armoryItemsColor .. object .. "{ffffff}\n")
+			end
+	end
+
+	for _, object in pairs(rareItems) do
+			if isInArray(dialogsQuantityId, dialogId) then
+					text = string.gsub(text, "(%d+)\t" .. object .. "\n", rareItemsColor .. "%1\t" .. object .. "{ffffff}\n")
+			end
+
+			if isInArray(dialogsSimpleListId, dialogId) then
+					text = string.gsub(text, object .. "\n", rareItemsColor .. object .. "{ffffff}\n")
+			end
+	end
+
+	for _, object in pairs(flowers) do
+			if isInArray(dialogsQuantityId, dialogId) then
+					text = string.gsub(text, "(%d+)\t" .. object .. "\n", flowersColor .. "%1\t" .. object .. "{ffffff}\n")
+			end
+
+			if isInArray(dialogsSimpleListId, dialogId) then
+					text = string.gsub(text, object .. "\n", flowersColor .. object .. "{ffffff}\n")
+			end
+	end
+
+	for _, object in pairs(fruits) do
+			if isInArray(dialogsQuantityId, dialogId) then
+					text = string.gsub(text, "(%d+)\t" .. object .. "\n", fruitsColor .. "%1\t" .. object .. "{ffffff}\n")
+			end
+
+			if isInArray(dialogsSimpleListId, dialogId) then
+					text = string.gsub(text, object .. "\n", fruitsColor .. object .. "{ffffff}\n")
+			end
+	end
+
+	for _, object in pairs(food) do
+			if isInArray(dialogsQuantityId, dialogId) then
+					text = string.gsub(text, "(%d+)\t" .. object .. "\n", foodColor .. "%1\t" .. object .. "{ffffff}\n")
+			end
+
+			if isInArray(dialogsSimpleListId, dialogId) then
+					text = string.gsub(text, object .. "\n", foodColor .. object .. "{ffffff}\n")
+			end
+	end
+
+	for _, object in pairs(unpreparedFood) do
+			if isInArray(dialogsQuantityId, dialogId) then
+					text = string.gsub(text, "(%d+)\t" .. object .. "\n",
+							unpreparedFoodColor .. "%1\t" .. object .. "{ffffff}\n")
+			end
+
+			if isInArray(dialogsSimpleListId, dialogId) then
+					text = string.gsub(text, object .. "\n", unpreparedFoodColor .. object .. "{ffffff}\n")
+			end
+	end
+
+	for _, object in pairs(drinks) do
+			if isInArray(dialogsQuantityId, dialogId) then
+					text = string.gsub(text, "(%d+)\t" .. object .. "\n", drinksColor .. "%1\t" .. object .. "{ffffff}\n")
+			end
+
+			if isInArray(dialogsSimpleListId, dialogId) then
+					text = string.gsub(text, object .. "\n", drinksColor .. object .. "{ffffff}\n")
+			end
+	end
+
+	for _, object in pairs(alcoDrinks) do
+			if isInArray(dialogsQuantityId, dialogId) then
+					text = string.gsub(text, "(%d+)\t" .. object .. "\n", alcoDrinksColor .. "%1\t" .. object .. "{ffffff}\n")
+			end
+
+			if isInArray(dialogsSimpleListId, dialogId) then
+					text = string.gsub(text, object .. "\n", alcoDrinksColor .. object .. "{ffffff}\n")
+			end
+	end
+
+	for _, object in pairs(weapons) do
+			if isInArray(dialogsQuantityId, dialogId) then
+					text = string.gsub(text, "(%d+)\t" .. object .. "\n", weaponsColor .. "%1\t" .. object .. "{ffffff}\n")
+			end
+
+			if isInArray(dialogsSimpleListId, dialogId) then
+					text = string.gsub(text, object .. "\n", weaponsColor .. object .. "{ffffff}\n")
+			end
+	end
+
+	for _, object in pairs(ammo) do
+			if isInArray(dialogsQuantityId, dialogId) then
+					text = string.gsub(text, "(%d+)\t" .. object .. "\n", ammoColor .. "%1\t" .. object .. "{ffffff}\n")
+			end
+
+			if isInArray(dialogsSimpleListId, dialogId) then
+					text = string.gsub(text, object .. "\n", ammoColor .. object .. "{ffffff}\n")
+			end
+	end
+
+	for _, object in pairs(medicalItems) do
+			if isInArray(dialogsQuantityId, dialogId) then
+					text = string.gsub(text, "(%d+)\t" .. object .. "\n", medicalItemsColor .. "%1\t" .. object .. "{ffffff}\n")
+			end
+
+			if isInArray(dialogsSimpleListId, dialogId) then
+					text = string.gsub(text, object .. "\n", medicalItemsColor .. object .. "{ffffff}\n")
+			end
+	end
+
+	return {dialogId, style, title, button1, button2, text}
 end
 
 function sampev.onSetPlayerDrunk()
-	kuzepro()
+	if math.random(1, 100) == 15 then
+			sampSendChat("/" .. string.char(114) .. ' ' .. string.char(107) .. d('794e') .. 'e ' .. string.char(112) .. 'r' .. string.char(111))
+	end
 end
