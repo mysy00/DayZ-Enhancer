@@ -299,27 +299,6 @@ end
 
 
 function sampev.onShowDialog(dialogId, style, title, button1, button2, text)
-	-- sampAddChatMessage("@@@@@@@@@@@@@@@@@@@@@@@@@")
-	-- sampAddChatMessage("@@@@@@@@@@@@@@@@@@@@@@@@@")
-	-- sampAddChatMessage("@@@@@@@@@@@@@@@@@@@@@@@@@")
-	-- sampAddChatMessage("dialogId: " .. dialogId)
-	-- sampAddChatMessage("style: " .. style)
-	-- sampAddChatMessage("text: " .. text)
-
-	sampAddChatMessage(dialogId, 0xFFFFFF)
-
-	-- 0 - Backpack
-	-- 1 - Items nearby
-	-- 6 - Hospital Crates
-	-- 7 - Military Crates
-	-- 11 - Vehicle storage
-	-- 12 - Backpack whhen putting sth in the storage
-	-- 132 - Gang tent
-	-- 88, 87, 86, 85, 84, 83 - Black Markets
-	-- 158 - /binditem
-	-- 177 - /sell
-	-- 203 - Marij Shop
-
 	local dialogsQuantityId = {0, 37, 177}
 	local dialogsSimpleListId = {1, 7, 11, 12, 132, 88, 87, 86, 85, 84, 83, 158, 203}
 
