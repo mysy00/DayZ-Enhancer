@@ -73,6 +73,7 @@ local medicalItemsColor = "{DA1616}"
 -- 7 - Military Crates
 -- 11 - Vehicle storage
 -- 12 - Backpack whhen putting sth in the storage
+-- 34 - Private crate
 -- 132 - Gang tent
 -- 88, 87, 86, 85, 84, 83 - Black Markets
 -- 158 - /binditem
@@ -299,7 +300,7 @@ end
 
 
 function sampev.onShowDialog(dialogId, style, title, button1, button2, text)
-	local dialogsQuantityId = {0, 37, 177}
+	local dialogsQuantityId = {0, 34, 37, 177}
 	local dialogsSimpleListId = {1, 7, 11, 12, 132, 88, 87, 86, 85, 84, 83, 158, 203}
 
 	if not isInArray(dialogsQuantityId, dialogId) and not isInArray(dialogsSimpleListId, dialogId) then
