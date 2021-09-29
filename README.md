@@ -7,7 +7,10 @@ DayZ Enhancer is a collection of scripts to enhance the gameplay on a SA:MP DayZ
 - Moonloader
   - Samp Events (tick the box to install it during Moonloader installation)
   - Moon Additions (tick the box to install it during Moonloader installation)
-- SAMPFUNCS
+  - SAMPFUNCS Integration (tick the box to install it during Moonloader installation)
+- SAMPFUNCS 5.4.1
+- CLEO4
+- Asi Loader
 
 ## Installation
 
@@ -64,6 +67,23 @@ git clone https://github.com/mysy00/DayZ-Enhancer.git
     - "Press N to pick up item, press Y to open your inventory" when joining the server
 - dayz/bike_macro.lua
   - Hold left shift to ride your bike quickly. Useful if your roommates are asleep and you want to play samp. It doesn't give you any advantages in terms of speed.
+
+## Common Issues
+**I can't download Moonloader**
+Open gtaforums in Firefox. If you want to use a chromium-basec browser (google chrome, edge, brave etc), you can click the download link with RMB and then click on the "Open in a new incognito tab".
+
+**I'm getting "Invalid textdraw position"**
+One of your mods is causing this. I haven't had this issue myself, so I can't narrow it down to a certain mod. All I can say is some Russian lua mods are known to cause such issue. In theory I could fix it by changing the way I hide default textdraws but I'm too busy with other stuff to take care of it.
+
+**It doesn't work, I don't see any error on the chat**
+- You are most likely lacking of a dependency which I've listed above 
+- It's possible you're using a wrong version of SAMPFUNCS
+
+**Nothing works, not even cleo and some of my asi mods**
+Install: https://www.microsoft.com/en-us/download/details.aspx?id=8109
+
+**I still can't get it to work**
+Open a new issue and upload your `moonloader.log`. You can also send me a DM on Discord - `Mysy#2137` but GH Issue is the recommended way.
 
 ## Contributing
 
