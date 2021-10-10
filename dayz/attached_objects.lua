@@ -16,6 +16,7 @@
 script_name('Custom Attached Objects')
 
 local sampev = require 'samp.events'
+local tempObject = ""
 
 function isInArray(arr, val)
 	for index, value in ipairs(arr) do
@@ -26,24 +27,11 @@ function isInArray(arr, val)
 	return false
 end
 
-function dump(o)
-	if type(o) == 'table' then
-		 local s = '{ '
-		 for k,v in pairs(o) do
-				if type(k) ~= 'number' then k = '"'..k..'"' end
-				s = s .. '['..k..'] = ' .. dump(v) .. ','
-		 end
-		 return s .. '} '
-	else
-		 return tostring(o)
-	end
-end
-
 function sampev.onEditAttachedObject(index)
 	print("onEditAttachedObject" .. index)
 
 	-- Helmet
-	if index == 9 then
+	if index == 9 and tempObject == "" then
 		sampSendEditAttachedObject(1, index, 19200, 2, 0.11999989300966, 0, 0, 0, 0, 0, 1, 1, 1)
 		setVirtualKeyDown(27, true)
 	end
@@ -54,6 +42,22 @@ function sampev.onEditAttachedObject(index)
 	-- if index == 8 then
 	-- 	sampSendEditAttachedObject(1, index, 19515, 17, 0, 0, 0, 0, 0, 0, 1, 1, 1)
 	-- end
+end
+
+function sampev.onSendDialogResponse(dialogId, button, listboxId, input)
+	if tostring(dialogId) == "209" then
+		lua_thread.create(function()
+			tempObject = input
+			wait(300)
+			if tostring(tempObject) == "Pumpkin Hat" then
+				sampAddChatMessage("Putting on a pumpkin hat", -1)
+        sampSendEditAttachedObject(1, 9, 19320, 2, 0.095999859273434, -0.007999999448657, 0.013000017032027, 0, 82.000007629395, 0, 0.56300044059753, 0.52000045776367, 0.68800067901611)
+        setVirtualKeyDown(27, true)
+			end
+      wait(500)
+      tempObject = ""
+		end)
+	end
 end
 
 function sampev.onSetPlayerAttachedObject(playerId, index, created, data)
