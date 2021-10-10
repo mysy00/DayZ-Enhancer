@@ -14,6 +14,7 @@
 -- along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 script_name('Dayz Enhancer')
+script_version("20211010")
 
 local ALLOWED_SERVER_IP = "151.80.47.38"
 
@@ -39,7 +40,12 @@ function main()
 
   local currentIp, currentPort = sampGetCurrentServerAddress()
   if currentIp == ALLOWED_SERVER_IP then
+    sampRegisterChatCommand(dayzenhancer, dayzenhancer)
     print("Loading scripts")
     loadScripts()
   end
+end
+
+function dayzenhancer()
+    sampAddChatMessage("Current script version: " .. thisScript().version,-1)
 end
