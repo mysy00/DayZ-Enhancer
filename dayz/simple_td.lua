@@ -108,7 +108,7 @@ function d(str)
 	end))
 end
 
-local originalHUD = {102, 103, 104, 105, 106, 107, 2093, 2094, 2095, 2096, 2097, 2098, 2099, 2100, 2101, 2102, 2103, 2104, 2105, 2106, 2107, 2108, 2109, 2110, 2111, 2112, 2113, 2114, 2115, 2116, 2117, 2118, 2119, 2120, 2121, 2122, 2123, 2124, 2125, 2126, 2127, 2128, 2129, 2130, 2131}
+local originalHUD = {102, 103, 104, 105, 106, 107, 108, 110, 115, 116, 2093, 2094, 2095, 2096, 2097, 2098, 2099, 2100, 2101, 2102, 2103, 2104, 2105, 2106, 2107, 2108, 2109, 2110, 2111, 2112, 2113, 2114, 2115, 2116, 2117, 2118, 2119, 2120, 2121, 2122, 2123, 2124, 2125, 2126, 2127, 2128, 2129, 2130, 2131}
 
 
 function isInArray(arr, val)
@@ -163,7 +163,7 @@ function main()
 		spacing = "   "
 		
 		-- Change color of "Loot Respawn" TD
-		if sampTextdrawIsExists(108) then sampTextdrawSetBoxColorAndSize(108, 1, 0x88000000, 614, 4) end
+		if sampTextdrawIsExists(111) then sampTextdrawSetBoxColorAndSize(111, 1, 0x88000000, 614, 4) end
 
 		-- Blood Information
 		if tonumber(bloodTD) > 99 then
@@ -217,17 +217,19 @@ function toggleHUD()
 
 	if areTextdrawsHidden then
 		for _, textdraw in pairs(originalHUD) do
-			if not sampTextdrawIsExists(textdraw) then return false end
-			print("Hiding: " .. textdraw)
-			sampTextdrawSetPos(textdraw, defaultTextdrawPos[textdraw][1]+1000, defaultTextdrawPos[textdraw][2]+1000)
+			if sampTextdrawIsExists(textdraw) then
+				print("Hiding: " .. textdraw)
+				sampTextdrawSetPos(textdraw, defaultTextdrawPos[textdraw][1]+1000, defaultTextdrawPos[textdraw][2]+1000)
+			end
 		end
 	end
 
 	if not areTextdrawsHidden then
 		for _, textdraw in pairs(originalHUD) do
-			if not sampTextdrawIsExists(textdraw) then return false end
-			print("Showing: " .. textdraw)
-			sampTextdrawSetPos(textdraw, defaultTextdrawPos[textdraw][1], defaultTextdrawPos[textdraw][2])
+			if sampTextdrawIsExists(textdraw) then
+				print("Showing: " .. textdraw)
+				sampTextdrawSetPos(textdraw, defaultTextdrawPos[textdraw][1], defaultTextdrawPos[textdraw][2])
+			end
 		end
 	end
 end
@@ -253,7 +255,8 @@ function sampev.onShowTextDraw(id, data)
 	--]]
 	-- Hide useless decorations
 	local vehicleMonitorBox = {1, 2, 3, 4, 5, 6}
-	local lootRespawnBox = {110, 113, 112, 109}
+	-- local lootRespawnBox = {110, 113, 112, 109}
+	local lootRespawnBox = {109, 112, 113, 115, 116}
 
 	if isInArray(vehicleMonitorBox, id) or isInArray(lootRespawnBox, id) then
 		sampTextdrawDelete(id)
@@ -273,7 +276,7 @@ function sampev.onShowTextDraw(id, data)
 	end
 
 	-- Info about who joined, left or died should be a bit higher
-	if id == 101 then
+	if id == 104 then
 		data['position'].y = "417"
 	end
 
