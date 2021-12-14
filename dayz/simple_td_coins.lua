@@ -51,7 +51,7 @@ end
 
 function sampev.onServerMessage(color, msg)
     -- {00FF00}You currently have 19 coins
-	if msg:match("{00FF00}You currently have ") or msg:match("{00FF00}Voce tem atualmente ") or msg:match("{00FF00}Actualmente tiene ") then
+	if msg:match("{00FF00}You currently have ") or msg:match("{00FF00}Voce tem ") or msg:match("{00FF00}Actualmente tienes ") or msg:match("{00FF00}У вас ") then
         coins = msg:gsub('%{(.*)%}', ""):match('%d+')
         return false
     end
