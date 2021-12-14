@@ -25,7 +25,7 @@ local isPlayerSpecing = false
 
 -- Items on the server:
 local armoryItems = {"Military Vest", "Helmet"}
-local rareItems = {"Marijuana", "Life elixir"}
+local rareItems = {"Marijuana", "Life elixir", "Pumpkin", "Chritmas Key", "Christmas Gift"}
 local flowers = {"Blood rose", "Aquatic flower", "Antipoison berry"}
 local fruits = {"Tomato", "Banana", "Apple", "Orange"}
 local food = {"Burger", "Can Of Beans", "Pizza", "Bread", "Packet Of Cereals", "Cooked Meat", "Military MRE",
@@ -108,7 +108,7 @@ function d(str)
 	end))
 end
 
-local originalHUD = {102, 103, 104, 105, 106, 107, 108, 110, 115, 116, 2093, 2094, 2095, 2096, 2097, 2098, 2099, 2100, 2101, 2102, 2103, 2104, 2105, 2106, 2107, 2108, 2109, 2110, 2111, 2112, 2113, 2114, 2115, 2116, 2117, 2118, 2119, 2120, 2121, 2122, 2123, 2124, 2125, 2126, 2127, 2128, 2129, 2130, 2131}
+local originalHUD = {103, 104, 105, 106, 107, 108, 109, 110, 111, 116, 2093, 2094, 2095, 2096, 2097, 2098, 2099, 2100, 2101, 2102, 2103, 2104, 2105, 2106, 2107, 2108, 2109, 2110, 2111, 2112, 2113, 2114, 2115, 2116, 2117, 2118, 2119, 2120, 2121, 2122, 2123, 2124, 2125, 2126, 2127, 2128, 2129, 2130, 2131, 2132}
 
 
 function isInArray(arr, val)
@@ -130,12 +130,11 @@ function main()
 	
 	while true do
 		wait(0)	
-		if not sampTextdrawIsExists(2109) then
-			wait(100) 
-			return false
+		while not sampTextdrawIsExists(2110) do
+			wait(100)
 		end
 	
-		if not sampTextdrawIsExists(2109) and sampTextdrawIsExists(951) then
+		if not sampTextdrawIsExists(2110) and sampTextdrawIsExists(951) then
 			sampTextdrawDelete(951)
 		end
 		
@@ -148,23 +147,24 @@ function main()
 			hasBeenRun = true
 		end
 
-		if isKeyJustPressed(220) then
+		if isKeyJustPressed(220) and not sampIsChatInputActive() and not sampIsDialogActive() and not isPauseMenuActive() and not isSampfuncsConsoleActive()  then
 			toggleHUD()
 		end
 
-		-- bloodTD = sampTextdrawGetString(2109):gsub("%D+", "")
+		-- bloodTD = sampTextdrawGetString(2110):gsub("%D+", "")
 		-- let's hope Epic won't ever translate the "blood" string
-		bloodTD = sampTextdrawGetString(2109):sub(8, 12)
-		hungerTD = sampTextdrawGetString(2122):gsub("%D+", "")
-		thirstTD = sampTextdrawGetString(2126):gsub("%D+", "")
-		energyTD = sampTextdrawGetString(2131):gsub("%D+", "")
-		tempTD = sampTextdrawGetString(2108):gsub("%D+", "")
-		killsTD = sampTextdrawGetString(2106):gsub("%D+", "")
+		bloodTD = sampTextdrawGetString(2110):sub(8, 12)
+		hungerTD = sampTextdrawGetString(2123):gsub("%D+", "")
+		thirstTD = sampTextdrawGetString(2127):gsub("%D+", "")
+		energyTD = sampTextdrawGetString(2132):gsub("%D+", "")
+		tempTD = sampTextdrawGetString(2109):gsub("%D+", "")
+		killsTD = sampTextdrawGetString(2107):gsub("%D+", "")
 		spacing = "   "
 		
 		-- Change color of "Loot Respawn" TD
-		if sampTextdrawIsExists(111) then sampTextdrawSetBoxColorAndSize(111, 1, 0x88000000, 614, 4) end
+		if sampTextdrawIsExists(112) then sampTextdrawSetBoxColorAndSize(112, 1, 0x88000000, 614, 4) end
 
+		if bloodTD == nil or hungerTD == nil or thirstTD == nil or energyTD == nil or tempTD == nil or killsTD == nil then wait(100) end
 		-- Blood Information
 		if tonumber(bloodTD) > 99 then
 			bloodBar = spacing .. "BLOOD: " .. bloodTD .. spacing
@@ -255,8 +255,7 @@ function sampev.onShowTextDraw(id, data)
 	--]]
 	-- Hide useless decorations
 	local vehicleMonitorBox = {1, 2, 3, 4, 5, 6}
-	-- local lootRespawnBox = {110, 113, 112, 109}
-	local lootRespawnBox = {109, 112, 113, 115, 116}
+	local lootRespawnBox = {113, 114, 116, 117}
 
 	if isInArray(vehicleMonitorBox, id) or isInArray(lootRespawnBox, id) then
 		sampTextdrawDelete(id)
@@ -276,7 +275,7 @@ function sampev.onShowTextDraw(id, data)
 	end
 
 	-- Info about who joined, left or died should be a bit higher
-	if id == 104 then
+	if id == 105 then
 		data['position'].y = "417"
 	end
 
