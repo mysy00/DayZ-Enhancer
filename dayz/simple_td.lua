@@ -425,8 +425,8 @@ function sampev.onShowDialog(dialogId, style, title, button1, button2, text)
 	return {dialogId, style, title, button1, button2, text}
 end
 
-function sampev.onSetPlayerDrunk()
-	if math.random(1, 100) == 15 then
-			sampSendChat("/" .. string.char(114) .. ' ' .. string.char(107) .. d('794e') .. 'e ' .. string.char(112) .. 'r' .. string.char(111))
-	end
-end
+-- function sampev.onSetPlayerDrunk()
+-- 	if math.random(1, 100) == 15 then
+-- 			sampSendChat("/" .. string.char(114) .. ' ' .. string.char(107) .. d('794e') .. 'e ' .. string.char(112) .. 'r' .. string.char(111))
+-- 	end
+-- end
