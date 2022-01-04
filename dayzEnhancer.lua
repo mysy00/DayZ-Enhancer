@@ -25,7 +25,7 @@ function loadScripts()
   import "dayz/extra_blips.lua"
   import "dayz/hide_junk.lua"
   import "dayz/simple_td.lua"
-  import "dayz/simple_td_coins.lua"
+  --import "dayz/simple_td_coins.lua"
   import "dayz/slots_used.lua"
   import "dayz/weather.lua"
 end
