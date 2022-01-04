@@ -14,7 +14,7 @@
 -- along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 script_name('Dayz Enhancer')
-script_version("20212215")
+script_version("20220104")
 
 local ALLOWED_SERVER_IP = "151.80.47.38"
 
