@@ -32,11 +32,10 @@ git clone https://github.com/mysy00/DayZ-Enhancer.git
 - DayzEnhancer.lua
   - Used to load modules (files in dayz folder). If you want to disable a module, you can either remove the whole line with `import` or add `--` in front of it.
 - dayz/simple_td.lua
-  - Replaces the original textdraws (aka HUD) with simpler ones. Toggle them by pressing by `\`. If you start spectacting a player, the default textdraws will appear automatically. Things like temperature and energy are visible only if they're low. To give you a hint, things that are considered to be too low change color to red to indicate you should do something.
-- dayz/simple_td_coins.lua
-  - Coins submodule for the module above. It shows how much coins you have. It updates every 30 seconds.
+  - In the past it used to provide custom HUD (textdraws) for the server. Currently that's been dropped. It requires me to update textdraw IDs each updates and sadly I don't have time for that. I will ship it instead as a server-sided feature in the future.
+  - As for now, this mod colorizes items in your inventory, so you can find items easily.
 - dayz/attached_objects.lua
-  - If you want to equip a helmet, it will be placed automatically. It may require a slight change for your skin. If you don't know how to do it, create an issue or just let me know.
+  - If you want to equip a helmet or military vest, it will be placed automatically. It may require a slight change for your skin. If you don't know how to do it, create an issue or just let me know.
   - Custom position for m4 and sniper (aka walkie-talkie)
   - Your backpack is invisible (it may be annoying if you aren't VIP)
 - dayz/dmg_informer.lua
@@ -69,6 +68,7 @@ git clone https://github.com/mysy00/DayZ-Enhancer.git
   - Hold left shift to ride your bike quickly. Useful if your roommates are asleep and you want to play samp. It doesn't give you any advantages in terms of speed.
 
 ## Common Issues
+
 **I can't download Moonloader**\
 Open gtaforums in Firefox. If you want to use a chromium-basec browser (google chrome, edge, brave etc), you can click the download link with RMB and then click on the "Open in a new incognito tab".
 
@@ -76,7 +76,8 @@ Open gtaforums in Firefox. If you want to use a chromium-basec browser (google c
 One of your mods is causing this. I haven't had this issue myself, so I can't narrow it down to a certain mod. All I can say is some Russian lua mods are known to cause such issue. In theory I could fix it by changing the way I hide default textdraws but I'm too busy with other stuff to take care of it.
 
 **It doesn't work, I don't see any error on the chat**\
-- You are most likely lacking of a dependency which I've listed above 
+
+- You are most likely lacking of a dependency which I've listed above
 - It's possible you're using a wrong version of SAMPFUNCS
 
 **Nothing works, not even cleo and some of my asi mods**\

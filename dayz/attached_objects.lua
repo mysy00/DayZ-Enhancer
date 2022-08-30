@@ -35,26 +35,20 @@ function sampev.onEditAttachedObject(index)
 		sampSendEditAttachedObject(1, index, 19200, 2, 0.11999989300966, 0, 0, 0, 0, 0, 1, 1, 1)
 		setVirtualKeyDown(27, true)
 	end
-
-	-- it would work but needs a server-side change
-	-- it's probably not gonna happen unless the gamemode becomes open source
+	
 	-- Military Vest
-	-- if index == 8 then
-	-- 	sampSendEditAttachedObject(1, index, 19515, 17, 0, 0, 0, 0, 0, 0, 1, 1, 1)
-	-- end
+	-- It's scalled to 0, so it's invisible and doesn't get in your way while aiming.
+	if index == 8 then
+		sampSendEditAttachedObject(1, index, 19515, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+		setVirtualKeyDown(27, true)
+	end
 end
 
 function sampev.onSendDialogResponse(dialogId, button, listboxId, input)
 	if tostring(dialogId) == "209" then
 		lua_thread.create(function()
 			tempObject = input
-			wait(300)
-			if tostring(tempObject) == "Pumpkin Hat" then
-				sampAddChatMessage("Putting on a pumpkin hat", -1)
-        sampSendEditAttachedObject(1, 9, 19320, 2, 0.095999859273434, -0.007999999448657, 0.013000017032027, 0, 82.000007629395, 0, 0.56300044059753, 0.52000045776367, 0.68800067901611)
-        setVirtualKeyDown(27, true)
-			end
-      wait(500)
+      wait(1000)
       tempObject = ""
 		end)
 	end
