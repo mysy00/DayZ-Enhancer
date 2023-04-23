@@ -11,7 +11,7 @@ local sampev = require 'samp.events'
 local coins = 0
 
 function renderCoins()
-    sampTextdrawCreate(952, "COINS: " .. coins, 553.5, 80)
+    sampTextdrawCreate(952, "COINS: " .. coins, 553.5, 80.0)
     sampTextdrawSetStyle(952, 2)
     sampTextdrawSetAlign(952, 2)
     sampTextdrawSetBoxColorAndSize(952, 1, 0x88000000, 0, 121.5)
@@ -48,7 +48,7 @@ function sampev.onServerMessage(color, msg)
     end
 
     if msg:match("%{ffff33%}%*%* Welcome to GTA:SA DayZ Remastered") then
-        mem.write(0x58F5FC, 0, 1, true) -- hide money
+        mem.write(0x58F564, 0, 1, true) -- hide money
 
         lua_thread.create(function()
             wait(1000)
