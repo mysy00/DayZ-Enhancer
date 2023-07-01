@@ -32,8 +32,8 @@ git clone https://github.com/mysy00/DayZ-Enhancer.git
 - DayzEnhancer.lua
   - Used to load modules (files in dayz folder). If you want to disable a module, you can either remove the whole line with `import` or add `--` in front of it.
 - dayz/simple_td.lua
-  - In the past it used to provide custom HUD (textdraws) for the server. Currently that's been dropped. It requires me to update textdraw IDs each updates and sadly I don't have time for that. I will ship it instead as a server-sided feature in the future.
-  - As for now, this mod colorizes items in your inventory, so you can find items easily.
+  - In the past it used to provide custom HUD (textdraws) for the server. It required me to update textdraw IDs each update and sadly it's very time consuming. It's now shipped as a server-sided feature for people using better_indicators.luac (it's included in this mod pack).
+  - This mod colorizes items in your inventory, so you can find items easily.
 - dayz/attached_objects.lua
   - If you want to equip a helmet or military vest, it will be placed automatically. It may require a slight change for your skin. If you don't know how to do it, create an issue or just let me know.
   - Custom position for m4 and sniper (aka walkie-talkie)
