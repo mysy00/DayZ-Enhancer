@@ -84,7 +84,7 @@ One of your mods is causing this. I haven't had this issue myself, so I can't na
 Install: https://www.microsoft.com/en-us/download/details.aspx?id=8109
 
 **I still can't get it to work**\
-Open a new issue and upload your `moonloader.log`. You can also send me a DM on Discord - `Mysy#2574` but GH Issue is the recommended way.
+Open a new issue and upload your `moonloader.log`. You can also send me a DM on Discord - `@mysy00` but GH Issue is the recommended way.
 
 ## Contributing
 
